@@ -1,0 +1,27 @@
+<form style="padding: 10px 10px 10px 10px; display: flex; flex-direction: column">
+  <mat-form-field style="width: 100%;">
+    <input matInput
+           placeholder="Adresse"
+           aria-label="Adresse"
+           [matAutocomplete]="auto"
+           [formControl]="addressCtrl">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let address of addresses | async" [value]="capitalize(address.street)" (onSelectionChange)="select(address)">
+        <span>{{address.street}} {{address.nr}} {{address.plz}} {{address.city}}</span>
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Nr" [formControl]="nrControl">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Postleitzahl" [formControl]="plzControl">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Stadt" [formControl]="cityControl">
+  </mat-form-field>
+</form>
+
